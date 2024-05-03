@@ -79,7 +79,7 @@ while (true)
             if (page == 1) canBack = false;
             if (page > 1) canBack = true;
             
-            Console.WriteLine($"{page}/{maxPage}");
+            Console.WriteLine($"Pages: {page}/{maxPage}");
             Console.WriteLine($"{"№",-4} {"Title",-75}| {"Series",-7} | {"Percent",-7} | HH:mm");
 
             
@@ -96,7 +96,9 @@ while (true)
             //     Console.WriteLine($"{serial.Title,-75}| {serial.ActualSeries,-3}/{serial.MaxSeries,-3} | {Math.Round(serial.WatchPercent, 2)}%");
             // }
 
-            Console.WriteLine("\"q\" for exit");
+            Console.WriteLine("\"q\" -> for exit");
+            Console.WriteLine("\"n\" -> for next");
+            Console.WriteLine("\"b\" -> for back");
             var value = Console.ReadLine();
             if (value == "q")
             {
@@ -115,7 +117,7 @@ while (true)
             {
                 if (int.TryParse(value, out var number))
                 {
-                    var editIndex = serials.FindIndex(x => x.Title == serialsOrdered[number-1].Title);
+                    var editIndex = serials.FindIndex(x => x.Title == serialsOrdered[see * (page - 1) + (number-1)].Title);
                     if (serials[editIndex].ActualSeries + 1 > serials[editIndex].MaxSeries)
                     {
                     }
